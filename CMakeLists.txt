@@ -118,6 +118,7 @@ ELSE()
     SET(OSG_WINDOWING_SYSTEM "X11" CACHE STRING "Windowing system type for graphics window creation; options: X11 or None.")
 ENDIF()
 
+SET(_OPENTHREADS_ATOMIC_USE_GCC_BUILTINS 1)
 
 SET(OPENSCENEGRAPH_VERSION ${OPENSCENEGRAPH_MAJOR_VERSION}.${OPENSCENEGRAPH_MINOR_VERSION}.${OPENSCENEGRAPH_PATCH_VERSION})
 
@@ -152,6 +153,7 @@ ENDIF(NOT CMAKE_BUILD_TYPE)
 
 IF(ANDROID)
     INCLUDE(OsgAndroidMacroUtils)
+    INCLUDE(WyAndroidMacroUtils)
 ENDIF()
 
 # Okay, here's the problem: On some platforms, linking against OpenThreads
@@ -735,7 +737,8 @@ OPTION(OSG_USE_LOCAL_LUA_SOURCE "Enable to use local Lua source when building th
 # cmake -DCMAKE_DISABLE_FIND_PACKAGE_PythonLibs=1 .
 #
 IF(ANDROID)
-    ANDROID_3RD_PARTY()
+#    ANDROID_3RD_PARTY()
+    WY_ANDROID_3RD_PARTY(${CMAKE_SOURCE_DIR}/../../)
 ELSE()
 # Common to all platforms except android:
     FIND_PACKAGE(Freetype)

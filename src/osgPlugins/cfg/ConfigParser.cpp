@@ -351,7 +351,7 @@ union yyalloc
 #   define YYCOPY(To, From, Count)        \
       do                    \
     {                    \
-      YYSIZE_T yyi;        \
+      register YYSIZE_T yyi;        \
       for (yyi = 0; yyi < (Count); yyi++)    \
         (To)[yyi] = (From)[yyi];        \
     }                    \
@@ -1025,7 +1025,7 @@ yystrlen (yystr)
      const char *yystr;
 #   endif
 {
-  const char *yys = yystr;
+  register const char *yys = yystr;
 
   while (*yys++ != '\0')
     continue;
@@ -1050,8 +1050,8 @@ yystpcpy (yydest, yysrc)
      const char *yysrc;
 #   endif
 {
-  char *yyd = yydest;
-  const char *yys = yysrc;
+  register char *yyd = yydest;
+  register const char *yys = yysrc;
 
   while ((*yyd++ = *yys++) != '\0')
     continue;
@@ -1175,8 +1175,8 @@ yyparse ()
 #endif
 {
 
-  int yystate;
-  int yyn;
+  register int yystate;
+  register int yyn;
   int yyresult;
   /* Number of tokens to shift before error messages enabled.  */
   int yyerrstatus;
@@ -1194,12 +1194,12 @@ yyparse ()
   /* The state stack.  */
   short    yyssa[YYINITDEPTH];
   short *yyss = yyssa;
-  short *yyssp;
+  register short *yyssp;
 
   /* The semantic value stack.  */
   YYSTYPE yyvsa[YYINITDEPTH];
   YYSTYPE *yyvs = yyvsa;
-  YYSTYPE *yyvsp;
+  register YYSTYPE *yyvsp;
 
 
 

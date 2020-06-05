@@ -281,10 +281,8 @@ void TextureRectangle::apply(State& state) const
             textureObject = generateAndAssignTextureObject(contextID, GL_TEXTURE_RECTANGLE, 0, texStorageSizedInternalFormat, _textureWidth, _textureHeight, 1, 0);
             textureObject->bind();
             applyTexParameters(GL_TEXTURE_RECTANGLE, state);
-            if(!textureObject->_allocated)
-            {
-                extensions->glTexStorage2D( GL_TEXTURE_RECTANGLE, 1, texStorageSizedInternalFormat, _textureWidth, _textureHeight);
-            }
+
+            extensions->glTexStorage2D( GL_TEXTURE_RECTANGLE, 1, texStorageSizedInternalFormat, _textureWidth, _textureHeight);
         }
         else
         {
@@ -305,7 +303,6 @@ void TextureRectangle::apply(State& state) const
             _readPBuffer->bindPBufferToTexture(GL_FRONT);
         }
 
-        textureObject->setAllocated(0, texStorageSizedInternalFormat!=0? texStorageSizedInternalFormat : _internalFormat, _textureWidth, _textureHeight, 1, 0);
     }
     else
     {

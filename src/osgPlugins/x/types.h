@@ -38,7 +38,7 @@ namespace DX {
      */
 
     // Vector
-    typedef struct Vector_struct {
+    typedef struct {
         float x,y,z;
 
         inline void normalize() {

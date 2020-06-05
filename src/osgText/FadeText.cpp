@@ -349,6 +349,7 @@ void FadeText::init()
 
 void FadeText::drawImplementation(osg::RenderInfo& renderInfo) const
 {
+
     osg::State& state = *renderInfo.getState();
 
     ViewBlendColourMap::iterator itr = _viewBlendColourMap.find(renderInfo.getView());
@@ -384,7 +385,7 @@ void FadeText::drawImplementation(osg::RenderInfo& renderInfo) const
         renderInfo.setUserData(userData);
     }
 
-    unsigned int frameNumber = renderInfo.getState()->getFrameStamp() ? renderInfo.getState()->getFrameStamp()->getFrameNumber() : 0;
+    unsigned int frameNumber = renderInfo.getState()->getFrameStamp()->getFrameNumber();
     if (frameNumber != userData->_frameNumber)
     {
         // new frame so must reset UserData structure.

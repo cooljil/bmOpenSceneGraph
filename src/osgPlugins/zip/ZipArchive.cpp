@@ -44,7 +44,6 @@ _zipLoaded( false )
 
 ZipArchive::~ZipArchive()
 {
-    close();
 }
 
 /** close the archive (on all threads) */

@@ -306,11 +306,8 @@ void Texture2D::apply(State& state) const
              textureObject = generateAndAssignTextureObject(contextID, GL_TEXTURE_2D, _numMipmapLevels, texStorageSizedInternalFormat, _textureWidth, _textureHeight, 1, _borderWidth);
              textureObject->bind();
              applyTexParameters(GL_TEXTURE_2D, state);
-             if(!textureObject->_allocated)
-             {
-                 extensions->glTexStorage2D( GL_TEXTURE_2D, osg::maximum(_numMipmapLevels,1), texStorageSizedInternalFormat,
-                          _textureWidth, _textureHeight);
-             }
+             extensions->glTexStorage2D( GL_TEXTURE_2D, osg::maximum(_numMipmapLevels,1), texStorageSizedInternalFormat,
+                      _textureWidth, _textureHeight);
          }
          else
          {
@@ -330,7 +327,6 @@ void Texture2D::apply(State& state) const
             _readPBuffer->bindPBufferToTexture(GL_FRONT);
         }
 
-        textureObject->setAllocated(_numMipmapLevels, texStorageSizedInternalFormat!=0? texStorageSizedInternalFormat: _internalFormat, _textureWidth, _textureHeight, 1, _borderWidth);
     }
     else
     {
