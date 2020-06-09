@@ -104,3 +104,5 @@ _CPack_Packages/
 #packages
 *.tar.gz
 *.zip
+CMakeLists.txt.user
+CMakeLists.txt.user

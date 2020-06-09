@@ -57,13 +57,13 @@ ELSEIF(WIN32 OR MINGW)
     SET(OSG_WINDOWING_SYSTEM "Win32" CACHE STRING "Windowing system type for graphics window creation; options: Win32 or None.")
 ELSEIF(APPLE)
     # custom option to flag an iOS build
-    OPTION(OSG_BUILD_PLATFORM_IPHONE "Enable IPhoneSDK Device support" OFF)
+    OPTION(OSG_BUILD_PLATFORM_IPHONE "Enable IPhoneSDK Device support" ON)
 
     IF(OSG_BUILD_PLATFORM_IPHONE)
 
         # set sdk and min versions
-        SET (IPHONE_SDKVER "10.2" CACHE STRING "IOS SDK-Version")
-        SET (IPHONE_VERSION_MIN "7.0" CACHE STRING "IOS minimum os version, use 7.0 or greater to get 64bit support")
+        SET (IPHONE_SDKVER "13.5" CACHE STRING "IOS SDK-Version")
+        SET (IPHONE_VERSION_MIN "11.0" CACHE STRING "IOS minimum os version, use 7.0 or greater to get 64bit support")
 
         # get full path to sdk from requested versions
         SET (IPHONE_DEVROOT "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer")
@@ -117,6 +117,30 @@ ELSEIF(APPLE)
 ELSE()
     SET(OSG_WINDOWING_SYSTEM "X11" CACHE STRING "Windowing system type for graphics window creation; options: X11 or None.")
 ENDIF()
+
+#------wy config--------------
+IF(OSG_BUILD_PLATFORM_IPHONE)
+    SET(THIRDPARTY_PATH "/Users/bigemap/QtProject/BmProject/3rdParty")
+    SET(OPENGL_PROFILE "GLES3")
+    SET(OSG_CPP_EXCEPTIONS_AVAILABLE ON)
+    SET(BUILD_OSG_APPLICATIONS OFF)
+    SET(BUILD_OSG_EXAMPLES OFF)
+    SET(DYNAMIC_OPENSCENEGRAPH OFF)
+    SET(DYNAMIC_OPENTHREADS OFF)
+    SET(OSG_USE_DEPRECATED_API OFF)
+    SET(OSG_WINDOWING_SYSTEM "IOS")
+    SET(OSG_DEFAULT_IMAGE_PLUGIN_FOR_OSX "imageio")
+    SET(CURL_INCLUDE_DIR "${THIRDPARTY_PATH}/curl-ios-device/include")
+    SET(CURL_LIBRARY "${THIRDPARTY_PATH}/curl-ios-device/lib/libcurl.a")
+    SET(FREETYPE_INCLUDE_DIR_freetype2 "${THIRDPARTY_PATH}/freetype-ios-universal/include/freetype")
+    SET(FREETYPE_INCLUDE_DIR_ft2build "${THIRDPARTY_PATH}/freetype-ios-universal/include")
+    SET(FREETYPE_LIBRARY "${THIRDPARTY_PATH}/freetype-ios-universal/lib/libFreetype2.a")
+    SET(TIFF_INCLUDE_DIR "${THIRDPARTY_PATH}/tiff-ios-device/include")
+    SET(TIFF_LIBRARY "${THIRDPARTY_PATH}/tiff-ios-device/lib/libtiff.a")
+    SET(GDAL_INCLUDE_DIR "${THIRDPARTY_PATH}/gdal-ios-device/include")
+    SET(GDAL_LIBRARY "${THIRDPARTY_PATH}/gdal-ios-device/lib/libgdal.a")
+ENDIF()
+#---------------------------
 
 SET(_OPENTHREADS_ATOMIC_USE_GCC_BUILTINS 1)
 
@@ -278,8 +302,6 @@ ELSE()
     FIND_PACKAGE(EGL)
 ENDIF()
 ENDIF()
-
-
 
 
 
@@ -460,7 +482,7 @@ OPTION(OSG_ENVVAR_SUPPORTED "Set to ON to build OpenSceneGraph with the #define 
 
 
 # Map the OPENGL_PROFILE to OSG_GL*_AVAILABLE settings
-SET(OPENGL_PROFILE "GL2" CACHE STRING "OpenGL Profile to use, choose from GL1, GL2, GL3, GLES1, GLES2, GLES3")
+SET(OPENGL_PROFILE "GLES3" CACHE STRING "OpenGL Profile to use, choose from GL1, GL2, GL3, GLES1, GLES2, GLES3")
 
 IF ((OPENGL_PROFILE STREQUAL "GL1") OR (OPENGL_PROFILE STREQUAL "GL2"))
     OPTION(OSG_GL1_AVAILABLE "Set to OFF to disable use of OpenGL 1.x functions library." ON )
