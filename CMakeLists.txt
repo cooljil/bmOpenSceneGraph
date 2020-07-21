@@ -139,6 +139,8 @@ IF(OSG_BUILD_PLATFORM_IPHONE)
     SET(TIFF_LIBRARY "${THIRDPARTY_PATH}/tiff/lib/libtiff.a")
     SET(GDAL_INCLUDE_DIR "${THIRDPARTY_PATH}/gdal/include")
     SET(GDAL_LIBRARY "${THIRDPARTY_PATH}/gdal/lib/libgdal.a")
+
+    SET(CMAKE_INSTALL_RPATH "/Users/bigemap/QtProject/BmProject/BmEarthLibForIOS/OSG")
 ENDIF()
 #---------------------------
 
@@ -184,13 +186,6 @@ IF(ANDROID)
         string(REPLACE "-g" "-O2 -DNDEBUG" CMAKE_C_FLAGS ${CMAKE_C_FLAGS})
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -frtti -fexceptions ")
         message(---------OSG_ANDROID CONFIG---------${CMAKE_CXX_FLAGS})
-    ENDIF()
-ELSEIF(OSG_BUILD_PLATFORM_IPHONE)
-    IF(${CMAKE_BUILD_TYPE} STREQUAL "Release")
-        string(REPLACE "-g" "-O2 -DNDEBUG" CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS})
-        string(REPLACE "-g" "-O2 -DNDEBUG" CMAKE_C_FLAGS ${CMAKE_C_FLAGS})
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -frtti -fexceptions ")
-        message(--------OSG_IOS CONFIG---------${CMAKE_CXX_FLAGS})
     ENDIF()
 ENDIF()
 
