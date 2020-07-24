@@ -62,7 +62,7 @@ ELSEIF(APPLE)
     IF(OSG_BUILD_PLATFORM_IPHONE)
 
         # set sdk and min versions
-        SET (IPHONE_SDKVER "13.5" CACHE STRING "IOS SDK-Version")
+        SET (IPHONE_SDKVER "13.6" CACHE STRING "IOS SDK-Version")
         SET (IPHONE_VERSION_MIN "11.0" CACHE STRING "IOS minimum os version, use 7.0 or greater to get 64bit support")
 
         # get full path to sdk from requested versions
