@@ -45,17 +45,15 @@ else(TIFF_INCLUDE_DIR)
 endif()
 
 #------ZLIB----------------------------------------------------
-#FIND_PATH(ZLIB_INCLUDE_DIR Android.mk
-#    ${3RD_PARTY_PATH}/3rdparty/zlib
-#)
-#set(ENV{AND_OSG_LIB_NAMES} "$ENV{AND_OSG_LIB_NAMES} zlib")
-#set(ENV{AND_OSG_LIB_PATHS} "$ENV{AND_OSG_LIB_PATHS}include ${ZLIB_INCLUDE_DIR}/Android.mk \n")
-#if(ZLIB_INCLUDE_DIR)
-#    message(STATUS "ZLIB found ${ZLIB_INCLUDE_DIR}" )
-#    set(ZLIB_FOUND "Yes")
-#else(ZLIB_INCLUDE_DIR)
-#    message(STATUS "ZLIB missing" )
-#endif()
+FIND_PATH(ZLIB_INCLUDE_DIR Android.mk
+    ${3RD_PARTY_PATH}/3rdparty/zlib NO_CMAKE_FIND_ROOT_PATH
+)
+if(ZLIB_INCLUDE_DIR)
+    message(STATUS "ZLIB found ${ZLIB_INCLUDE_DIR}" )
+    set(ZLIB_FOUND "Yes")
+else(ZLIB_INCLUDE_DIR)
+    message(STATUS "ZLIB missing" )
+endif()
 
 
 #-------CURL------------------------------------
